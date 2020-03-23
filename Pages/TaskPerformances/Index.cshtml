@@ -1,0 +1,55 @@
+﻿@page
+@model Task_Performace_Indicator_Core_Web_App.Pages.TaskPerformances.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Task Performance</h1>
+
+<p>
+    <a class="btn btn-success" asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskPerformance[0].CompletedTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskPerformance[0].Operator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskPerformance[0].Task)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskPerformance[0].PerformanceIndex)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.TaskPerformance) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompletedTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Operator.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Task.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PerformanceIndex)
+            </td>
+            <td>
+                <a class="btn btn-success" asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-success" asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a class="btn btn-success" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
